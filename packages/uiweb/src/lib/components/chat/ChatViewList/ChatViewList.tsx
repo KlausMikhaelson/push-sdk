@@ -254,7 +254,7 @@ export const ChatViewList: React.FC<IChatViewListProps> = (
         if (Object.keys(messages || {}) && messages?.messages.length) {
           const newChatViewList = appendUniqueMessages(
             messages,
-            chatHistory,
+            chatHistory as any,
             true
           );
 
@@ -273,7 +273,7 @@ export const ChatViewList: React.FC<IChatViewListProps> = (
 
     if (updatedMessageList && updatedMessageList.length) {
       setMessages({
-        messages: updatedMessageList,
+        messages: updatedMessageList as any,
         lastThreadHash: updatedMessageList[0].link,
       });
     }

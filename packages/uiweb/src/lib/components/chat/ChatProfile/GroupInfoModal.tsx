@@ -77,25 +77,25 @@ const PendingMembers = ({
 }: PendingMembersProps) => {
   if (groupInfo) {
     return (
-      <PendingRequestWrapper theme={theme}>
-        <PendingSection
+      <Section theme={theme}>
+        <Section
           onClick={() => setShowPendingRequests(!showPendingRequests)}
         >
           <Span fontSize="18px" color={theme.textColor?.modalSubHeadingText}>
             Pending Requests
           </Span>
-          <Badge>{groupInfo?.pendingMembers?.length}</Badge>
+          <Section>{groupInfo?.pendingMembers?.length}</Section>
 
-          <ArrowImage
+          <Image
             src={ArrowIcon}
             width={'auto'}
-            setPosition={!showPendingRequests}
+            // setPosition={!showPendingRequests}
             borderRadius="100%"
           />
-        </PendingSection>
+        </Section>
 
         {showPendingRequests && (
-          <ProfileSection
+          <Section
             flexDirection="column"
             flex="1"
             justifyContent="start"
@@ -104,7 +104,7 @@ const PendingMembers = ({
             {groupInfo?.pendingMembers &&
               groupInfo?.pendingMembers?.length > 0 &&
               groupInfo?.pendingMembers.map((item) => (
-                <GroupPendingMembers theme={theme}>
+                <Section theme={theme}>
                   <ProfileContainer
                     theme={theme}
                     member={{
@@ -118,11 +118,11 @@ const PendingMembers = ({
                       fontWeight: '300',
                     }}
                   />
-                </GroupPendingMembers>
+                </Section>
               ))}
-          </ProfileSection>
+          </Section>
         )}
-      </PendingRequestWrapper>
+      </Section>
     );
   } else {
     return null;
@@ -172,7 +172,7 @@ export const ConditionsInformation = ({
           alert={alert}
         />
       )}
-      <ConditionSection
+      <Section
         overflow="hidden auto"
         maxHeight={isMobile ? '46vh' : '49vh'}
         justifyContent="start"
@@ -227,7 +227,7 @@ export const ConditionsInformation = ({
             ) : null}
           </>
         ))}
-      </ConditionSection>
+      </Section>
     </Section>
   );
 };
@@ -253,10 +253,10 @@ export const GroupTypeBadge = ({
 }: GroupTypeProps) => {
   return (
     // <Section cursor={cursor} justifyContent='start' alignItems='start'>
-    <PublicEncrypted
+    <Section
       onClick={handleNextInformation}
       theme={theme}
-      alert={alert}
+      // alert={alert}
       cursor="pointer"
       justifyContent="start"
     >
@@ -291,7 +291,7 @@ export const GroupTypeBadge = ({
           {subheader}
         </Span>
       </Section>
-    </PublicEncrypted>
+    </Section>
     // </Section>
   );
 };
@@ -409,7 +409,7 @@ const GroupInformation = ({
   };
 
   return (
-    <ScrollSection
+    <Section
       margin="auto"
       width="100%"
       flexDirection="column"
@@ -421,7 +421,7 @@ const GroupInformation = ({
       padding="0 2px 0 0"
       theme={theme}
     >
-      <GroupDescription>
+      <Section>
         <Span fontSize="18px" color={theme.textColor?.modalHeadingText}>
           Chat ID
         </Span>
@@ -462,8 +462,8 @@ const GroupInformation = ({
             </Span>
           )}
         </Section>
-      </GroupDescription>
-      <GroupDescription>
+      </Section>
+      <Section>
         <Span fontSize="18px" color={theme.textColor?.modalHeadingText}>
           Group Description
         </Span>
@@ -475,7 +475,7 @@ const GroupInformation = ({
         >
           {groupInfo?.groupDescription}
         </Span>
-      </GroupDescription>
+      </Section>
       <GroupTypeBadge
         theme={theme}
         icon={
@@ -509,7 +509,7 @@ const GroupInformation = ({
       {isAccountOwnerAdmin(groupInfo, account!) &&
         groupInfo?.members &&
         groupInfo?.members?.length < 10 && (
-          <AddWalletContainer
+          <Section
             theme={theme}
             onClick={() => setShowAddMoreWalletModal(true)}
           >
@@ -530,7 +530,7 @@ const GroupInformation = ({
             >
               Add more wallets
             </Span>
-          </AddWalletContainer>
+          </Section>
         )}
 
       <Section borderRadius="16px">
@@ -544,7 +544,7 @@ const GroupInformation = ({
         )}
       </Section>
 
-      <ProfileSection
+      <Section
         // margin="15px 10px"
         flexDirection="column"
         zIndex="2"
@@ -568,8 +568,8 @@ const GroupInformation = ({
               dropdownRef={dropdownRef}
             />
           ))}
-      </ProfileSection>
-    </ScrollSection>
+      </Section>
+    </Section>
   );
 };
 
@@ -758,7 +758,7 @@ export const GroupInfoModal = ({
               handleClose={onClose}
             />
 
-            <GroupHeader>
+            <Section>
               <Image
                 src={groupInfo?.groupImage ?? ''}
                 height="64px"
@@ -783,7 +783,7 @@ export const GroupInfoModal = ({
                   {groupInfo?.members?.length} Members
                 </Span>
               </Section>
-            </GroupHeader>
+            </Section>
             {renderComponent()}
           </Section>
         )}
@@ -807,128 +807,128 @@ export const GroupInfoModal = ({
 };
 
 //styles
-const GroupHeader = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  gap: 19px;
-`;
+// const GroupHeader = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   width: 100%;
+//   gap: 19px;
+// `;
 
-const GroupDescription = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: flex-start;
-  gap: 5px;
-`;
+// const GroupDescription = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   width: 100%;
+//   align-items: flex-start;
+//   gap: 5px;
+// `;
 
-const PublicEncrypted = styled(Section)<{ alert?: boolean }>`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  gap: 12px;
-  align-items: center;
-  border: ${(props) =>
-    props?.alert
-      ? '1px solid #E93636'
-      : props.theme.border.modalInnerComponents};
-  border-radius: ${(props) => props.theme.borderRadius.modalInnerComponents};
-  padding: 12px 16px;
-  box-sizing: border-box;
-  background: ${(props) => props.theme.backgroundColor.modalHoverBackground};
-`;
+// const PublicEncrypted = styled(Section)<{ alert?: boolean }>`
+//   display: flex;
+//   flex-direction: row;
+//   width: 100%;
+//   gap: 12px;
+//   align-items: center;
+//   border: ${(props) =>
+//     props?.alert
+//       ? '1px solid #E93636'
+//       : props.theme.border.modalInnerComponents};
+//   border-radius: ${(props) => props.theme.borderRadius.modalInnerComponents};
+//   padding: 12px 16px;
+//   box-sizing: border-box;
+//   background: ${(props) => props.theme.backgroundColor.modalHoverBackground};
+// `;
 
-const AddWalletContainer = styled.div`
-  border: ${(props) => props.theme.border.modalInnerComponents};
-  border-radius: ${(props) => props.theme.borderRadius.modalInnerComponents};
-  width: 100%;
-  padding: 20px 16px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  cursor: pointer;
-  align-items: center;
-`;
+// const AddWalletContainer = styled.div`
+//   border: ${(props) => props.theme.border.modalInnerComponents};
+//   border-radius: ${(props) => props.theme.borderRadius.modalInnerComponents};
+//   width: 100%;
+//   padding: 20px 16px;
+//   box-sizing: border-box;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: center;
+//   cursor: pointer;
+//   align-items: center;
+// `;
 
-const GroupPendingMembers = styled.div`
-  margin-top: 3px;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  align-items: center;
-  background: ${(props) => props.theme.backgroundColor.modalHoverBackground};
-  padding: 10px 15px;
-  box-sizing: border-box;
+// const GroupPendingMembers = styled.div`
+//   margin-top: 3px;
+//   display: flex;
+//   flex-direction: row;
+//   width: 100%;
+//   align-items: center;
+//   background: ${(props) => props.theme.backgroundColor.modalHoverBackground};
+//   padding: 10px 15px;
+//   box-sizing: border-box;
 
-  &:last-child {
-    border-radius: 0px 0px 16px 16px;
-  }
-`;
+//   &:last-child {
+//     border-radius: 0px 0px 16px 16px;
+//   }
+// `;
 
-const PendingRequestWrapper = styled.div`
-  width: 100%;
-  border: ${(props) => props.theme.border.modalInnerComponents};
-  border-radius: ${(props) => props.theme.borderRadius.modalInnerComponents};
-  padding: 0px 0px;
-  box-sizing: border-box;
-`;
+// const PendingRequestWrapper = styled.div`
+//   width: 100%;
+//   border: ${(props) => props.theme.border.modalInnerComponents};
+//   border-radius: ${(props) => props.theme.borderRadius.modalInnerComponents};
+//   padding: 0px 0px;
+//   box-sizing: border-box;
+// `;
 
-const PendingSection = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex: 1;
-  cursor: pointer;
-  padding: 15px 20px;
-  box-sizing: border-box;
-`;
+// const PendingSection = styled.div`
+//   width: 100%;
+//   display: flex;
+//   flex-direction: row;
+//   align-items: center;
+//   flex: 1;
+//   cursor: pointer;
+//   padding: 15px 20px;
+//   box-sizing: border-box;
+// `;
 
-const ArrowImage = styled(Image)<ShadowedProps>`
-  margin-left: auto;
-  transform: ${(props) =>
-    props?.setPosition ? 'rotate(0)' : 'rotate(180deg)'};
-`;
+// const ArrowImage = styled(Image)<ShadowedProps>`
+//   margin-left: auto;
+//   transform: ${(props) =>
+//     props?.setPosition ? 'rotate(0)' : 'rotate(180deg)'};
+// `;
 
-const Badge = styled.div`
-  margin: 0 0 0 5px;
-  font-size: 13px;
-  background: rgb(207, 28, 132);
-  padding: 4px 8px;
-  border-radius: 7px;
-  color: white;
-  font-weight: 700;
-`;
+// const Badge = styled.div`
+//   margin: 0 0 0 5px;
+//   font-size: 13px;
+//   background: rgb(207, 28, 132);
+//   padding: 4px 8px;
+//   border-radius: 7px;
+//   color: white;
+//   font-weight: 700;
+// `;
 
-const ConditionSection = styled(Section)<{ theme: IChatTheme }>`
-  &::-webkit-scrollbar-thumb {
-    background: ${(props) => props.theme.scrollbarColor};
-    border-radius: 10px;
-  }
-  &::-webkit-scrollbar-button {
-    height: 20px;
-  }
-  &::-webkit-scrollbar {
-    width: 4px;
-  }
-`;
+// const ConditionSection = styled(Section)<{ theme: IChatTheme }>`
+//   &::-webkit-scrollbar-thumb {
+//     background: ${(props) => props.theme.scrollbarColor};
+//     border-radius: 10px;
+//   }
+//   &::-webkit-scrollbar-button {
+//     height: 20px;
+//   }
+//   &::-webkit-scrollbar {
+//     width: 4px;
+//   }
+// `;
 
-const ProfileSection = styled(Section)`
-  height: fit-content;
-`;
-const ScrollSection = styled(Section)<{ theme: IChatTheme }>`
-  &::-webkit-scrollbar-thumb {
-    background: ${(props) => props.theme.scrollbarColor};
-    border-radius: 10px;
-  }
-  &::-webkit-scrollbar-button {
-    height: 40px;
-  }
+// const ProfileSection = styled(Section)`
+//   height: fit-content;
+// `;
+// const ScrollSection = styled(Section)<{ theme: IChatTheme }>`
+//   &::-webkit-scrollbar-thumb {
+//     background: ${(props) => props.theme.scrollbarColor};
+//     border-radius: 10px;
+//   }
+//   &::-webkit-scrollbar-button {
+//     height: 40px;
+//   }
 
-  &::-webkit-scrollbar {
-    width: 4px;
-  }
-`;
+//   &::-webkit-scrollbar {
+//     width: 4px;
+//   }
+// `;
 
 //auto update members when an user accepts not done

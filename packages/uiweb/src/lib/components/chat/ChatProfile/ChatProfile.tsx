@@ -2,7 +2,6 @@
 
 import { useContext, useEffect, useRef, useState } from 'react';
 
-import styled from 'styled-components';
 import type { IUser } from '@pushprotocol/restapi';
 import { ethers } from 'ethers';
 import { ToastContainer } from 'react-toastify';
@@ -114,7 +113,7 @@ export const ChatProfile: React.FC<IChatProfile> = ({
 
   if (chatId && style === 'Info') {
     return (
-      <Container theme={theme}>
+      <Section theme={theme}>
         <ProfileContainer
           theme={theme}
           member={{ wallet: getProfileName() as string, image: getImage() }}
@@ -139,7 +138,7 @@ export const ChatProfile: React.FC<IChatProfile> = ({
           )}
 
           {!!groupInfo && isGroup && (
-            <ImageItem onClick={() => setOptions(true)}>
+            <Section onClick={() => setOptions(true)}>
               <Image
                 src={VerticalEllipsisIcon}
                 height="21px"
@@ -149,8 +148,8 @@ export const ChatProfile: React.FC<IChatProfile> = ({
               />
 
               {options && (
-                <DropDownBar theme={theme} ref={DropdownRef}>
-                  <DropDownItem cursor="pointer" onClick={ShowModal}>
+                <Section theme={theme} ref={DropdownRef}>
+                  <Span cursor="pointer" onClick={ShowModal}>
                     <Image
                       src={InfoIcon}
                       height="21px"
@@ -159,11 +158,11 @@ export const ChatProfile: React.FC<IChatProfile> = ({
                       cursor="pointer"
                     />
 
-                    <TextItem cursor="pointer">Group Info</TextItem>
-                  </DropDownItem>
-                </DropDownBar>
+                    <Span cursor="pointer">Group Info</Span>
+                  </Span>
+                </Section>
               )}
-            </ImageItem>
+            </Section>
           )}
          
         
@@ -185,61 +184,61 @@ export const ChatProfile: React.FC<IChatProfile> = ({
                     } */}
 
         <ToastContainer />
-      </Container>
+      </Section>
     );
   } else {
     return null;
   }
 };
 
-const Container = styled.div`
-  width: 100%;
-  background: ${(props) => props.theme.backgroundColor.chatProfileBackground};
-  border: ${(props) => props.theme.border?.chatProfile};
-  border-radius: ${(props) => props.theme.borderRadius?.chatProfile};
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 6px;
-  box-sizing: border-box;
-`;
+// const Container = styled.div`
+//   width: 100%;
+//   background: ${(props) => props.theme.backgroundColor.chatProfileBackground};
+//   border: ${(props) => props.theme.border?.chatProfile};
+//   border-radius: ${(props) => props.theme.borderRadius?.chatProfile};
+//   display: flex;
+//   flex-direction: row;
+//   align-items: center;
+//   padding: 6px;
+//   box-sizing: border-box;
+// `;
 
-const ImageItem = styled.div`
-  position: relative;
-`;
+// const ImageItem = styled.div`
+//   position: relative;
+// `;
 
-const DropDownBar = styled.div`
-  position: absolute;
-  top: 30px;
-  left: -130px;
-  cursor: pointer;
-  display: block;
-  min-width: 140px;
-  color: rgb(101, 119, 149);
-  background: ${(props) => props.theme.backgroundColor.modalBackground};
-  border: ${(props) => props.theme.border.modalInnerComponents};
-  z-index: 10;
-  border-radius: ${(props) => props.theme.borderRadius.modalInnerComponents};
-`;
+// const DropDownBar = styled.div`
+//   position: absolute;
+//   top: 30px;
+//   left: -130px;
+//   cursor: pointer;
+//   display: block;
+//   min-width: 140px;
+//   color: rgb(101, 119, 149);
+//   background: ${(props) => props.theme.backgroundColor.modalBackground};
+//   border: ${(props) => props.theme.border.modalInnerComponents};
+//   z-index: 10;
+//   border-radius: ${(props) => props.theme.borderRadius.modalInnerComponents};
+// `;
 
-const VideoChatSection = styled.div`
-  margin: 0 25px 0 auto;
-`;
+// const VideoChatSection = styled.div`
+//   margin: 0 25px 0 auto;
+// `;
 
-const DropDownItem = styled(Span)`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
-  border-radius: 16px;
-  z-index: 3000000;
-  width: 100%;
-`;
+// const DropDownItem = styled(Span)`
+//   display: flex;
+//   flex-direction: row;
+//   align-items: center;
+//   gap: 8px;
+//   padding: 10px 16px;
+//   border-radius: 16px;
+//   z-index: 3000000;
+//   width: 100%;
+// `;
 
-const TextItem = styled(Span)`
-  white-space: nowrap;
-  overflow: hidden;
-`;
+// const TextItem = styled(Span)`
+//   white-space: nowrap;
+//   overflow: hidden;
+// `;
 
 //auto update members when an user accepts not done

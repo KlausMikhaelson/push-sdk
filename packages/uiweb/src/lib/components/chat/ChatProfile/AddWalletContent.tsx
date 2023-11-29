@@ -1,6 +1,5 @@
 import { useContext, useState } from 'react';
 
-import styled from 'styled-components';
 
 import { ThemeContext } from '../theme/ThemeProvider';
 import { useChatData } from '../../../hooks';
@@ -21,7 +20,7 @@ import { IChatTheme, ModalButtonProps, User } from '../exportedTypes';
 import { addWalletValidation } from '../helpers/helper';
 import { device } from '../../../config';
 import CloseIcon from '../../../icons/close.svg';
-import { ChatSearchInput, CustomStyleParamsType, ModalHeader } from '../reusables';
+import { Button, ChatSearchInput, CustomStyleParamsType, ModalHeader } from '../reusables';
 import useGetChatProfile from '../../../hooks/useGetChatProfile';
 import { BackIcon } from '../../../icons/Back';
 
@@ -152,16 +151,16 @@ export const AddWalletContent = ({
       </Section>
 
       {filteredUserData && (
-        <MemberList>
+        <Section>
           <MemberListContainer
             memberData={filteredUserData}
             handleMemberList={addMemberToList}
             darkIcon={<AddUserDarkIcon />}
           />
-        </MemberList>
+        </Section>
       ) }
 
-      <MultipleMemberList>
+      <Section>
         {memberList?.map((member: any, index: any) => (
           <MemberListContainer
             key={index}
@@ -172,18 +171,18 @@ export const AddWalletContent = ({
             darkIcon={<MoreDarkIcon />}
           />
         ))}
-      </MultipleMemberList>
+      </Section>
 
       <Section flex="1" alignSelf="center">
-        <ModalConfirmButton
+        <Section
           onClick={() => onSubmit()}
-          isLoading={isLoading}
-          memberListCount={memberList?.length > 0}
+          // isLoading={isLoading}
+          // memberListCount={memberList?.length > 0}
           theme={theme}
         >
           {!isLoading && groupMembers ? 'Add To Group' : ''}
           {isLoading && <Spinner size="30" color="#fff" />}
-        </ModalConfirmButton>
+        </Section>
       </Section>
     </Section>
   );
@@ -192,74 +191,33 @@ export const AddWalletContent = ({
 
 
 
-const MemberList = styled.div`
-  flex: 1;
-  width: 100%;
-  margin-bottom:40px;
-`;
+// const MemberList = styled.div`
+//   flex: 1;
+//   width: 100%;
+//   margin-bottom:40px;
+// `;
 
-const MultipleMemberList = styled.div`
-  height: fit-content;
-  max-height: 216px;
-  padding: 0px 2px;
-  width: 100%;
+// const Multif
 
-  &::-webkit-scrollbar-track {
-    background-color: ${(props) => props.theme.scrollbarColor};
-  }
-
-  &::-webkit-scrollbar {
-    background-color: ${(props) => props.theme.scrollbarColor};
-    width: 6px;
-  }
-
-  @media (max-width: 768px) {
-    padding: 0px 0px 0px 0px;
-    max-height: 35vh;
-
-    &::-webkit-scrollbar-track {
-      background-color: none;
-      border-radius: 9px;
-    }
-
-    &::-webkit-scrollbar {
-      background-color: none;
-      width: 4px;
-    }
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-image: -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      color-stop(0.44, #cf1c84),
-      color-stop(0.72, #cf1c84),
-      color-stop(0.86, #cf1c84)
-    );
-  }
-`;
-
-const ModalConfirmButton = styled.button<ModalButtonProps & { theme: IChatTheme } >`
-  margin: 60px 0 0 0;
-  width: 197px;
-  background: ${(props) =>
-    props.memberListCount ? props.theme.backgroundColor!.buttonBackground : props.theme.backgroundColor!.buttonDisableBackground};
-  color: ${(props) =>
-    props.memberListCount ? props.theme.textColor!.buttonText : props.theme.textColor!.buttonDisableText};
-  border: ${(props) =>
-    props.memberListCount ? 'none' : props.theme.border!.modal};
-  min-width: 50%;
-  box-sizing: border-box;
-  cursor: pointer;
-  border-radius: 12px;
-  padding: 16px;
-  font-size: 16px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: none;
-  height: 48px;
-`;
+// const ModalConfirmButton = styled.button<ModalButtonProps & { theme: IChatTheme } >`
+//   margin: 60px 0 0 0;
+//   width: 197px;
+//   background: ${(props) =>
+//     props.memberListCount ? props.theme.backgroundColor!.buttonBackground : props.theme.backgroundColor!.buttonDisableBackground};
+//   color: ${(props) =>
+//     props.memberListCount ? props.theme.textColor!.buttonText : props.theme.textColor!.buttonDisableText};
+//   border: ${(props) =>
+//     props.memberListCount ? 'none' : props.theme.border!.modal};
+//   min-width: 50%;
+//   box-sizing: border-box;
+//   cursor: pointer;
+//   border-radius: 12px;
+//   padding: 16px;
+//   font-size: 16px;
+//   font-weight: 500;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   box-shadow: none;
+//   height: 48px;
+// `;

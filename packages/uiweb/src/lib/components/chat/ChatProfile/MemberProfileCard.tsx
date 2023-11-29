@@ -48,7 +48,7 @@ export const MemberProfileCard = ({
 
 
   return (
-    <ProfileCardItem
+    <Section
       background={
         (member.wallet?.toLowerCase() === selectedMemberAddress?.toLowerCase()) ? theme.backgroundColor?.modalHoverBackground : ''
       }
@@ -96,7 +96,7 @@ export const MemberProfileCard = ({
       </Section>
       {selectedMemberAddress?.toLowerCase() ==
         member?.wallet?.toLowerCase() && (
-        <DropdownContainer
+        <Section
           style={{ top: dropdownHeight! > 570 ? '30%' : '40%' }}
           theme={theme}
           ref={dropdownRef}
@@ -105,51 +105,51 @@ export const MemberProfileCard = ({
             dropdownValues={dropdownValues}
             hoverBGColor={theme.backgroundColor?.modalHoverBackground}
           />
-        </DropdownContainer>
+        </Section>
       )}
-    </ProfileCardItem>
+    </Section>
   );
 };
 
 //styles
-const ProfileCardItem = styled(Section)<{ id: any; key: any; background: any }>`
-  justify-content: space-between;
-  padding: 8px 8px;
-  // border-radius: 16px;
-  border-bottom: ${(props) => props.theme.border.modalInnerComponents};
-  position: relative;
-  box-sizing: border-box;
-  width: 100%;
-  max-height: 64px;
-  align-self: stretch;
-  display: flex;
-  height: auto;
-  z-index: auto;
-  flex: 1;
-  @media (max-width: 480px) {
-    max-width: 100%;
-  }
-`;
+// const ProfileCardItem = styled(Section)<{ id: any; key: any; background: any }>`
+//   justify-content: space-between;
+//   padding: 8px 8px;
+//   // border-radius: 16px;
+//   border-bottom: ${(props) => props.theme.border.modalInnerComponents};
+//   position: relative;
+//   box-sizing: border-box;
+//   width: 100%;
+//   max-height: 64px;
+//   align-self: stretch;
+//   display: flex;
+//   height: auto;
+//   z-index: auto;
+//   flex: 1;
+//   @media (max-width: 480px) {
+//     max-width: 100%;
+//   }
+// `;
 
-const DropdownContainer = styled(Section)`
-  position: absolute;
-  left: 48%;
-  top: 69%;
-  border-radius: ${(props) => props.theme.borderRadius.modalInnerComponents};
-  padding: 14px 8px;
-  z-index: 999999999999 !important;
-  display: flex;
-  flex-direction: column !important;
-  background: ${(props) => props.theme.backgroundColor.modalBackground};
-  border: ${(props) => props.theme.border.modal};
+// const DropdownContainer = styled(Section)`
+//   position: absolute;
+//   left: 48%;
+//   top: 69%;
+//   border-radius: ${(props) => props.theme.borderRadius.modalInnerComponents};
+//   padding: 14px 8px;
+//   z-index: 999999999999 !important;
+//   display: flex;
+//   flex-direction: column !important;
+//   background: ${(props) => props.theme.backgroundColor.modalBackground};
+//   border: ${(props) => props.theme.border.modal};
 
-  @media ${device.mobileL} {
-    left: 27%;
-  }
-  @media (min-width: 426px) and (max-width: 1150px) {
-    left: 48%;
-  }
-  @media (max-width: 480px) {
-    left: 25%;
-  }
-`;
+//   @media ${device.mobileL} {
+//     left: 27%;
+//   }
+//   @media (min-width: 426px) and (max-width: 1150px) {
+//     left: 48%;
+//   }
+//   @media (max-width: 480px) {
+//     left: 25%;
+//   }
+// `;

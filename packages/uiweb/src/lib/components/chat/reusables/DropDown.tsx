@@ -84,10 +84,10 @@ function Dropdown({
               letterSpacing="1px"
               width="100%"
             >
-              <DesktopAddress>{dropdownValue?.title}</DesktopAddress>
-              <MobileAddress>
+              <Span>{dropdownValue?.title}</Span>
+              <Span>
                 {shortenText(dropdownValue?.title, 6)}
-              </MobileAddress>
+              </Span>
             </Span>
             {dropdownValue?.invertedIcon && (
               <Image
@@ -114,8 +114,8 @@ function Dropdown({
             )}
           </Section>
         ) : (
-          <DropdownItemContainer
-            hoverBGColor={hoverBGColor}
+          <Section
+            // hoverBGColor={hoverBGColor}
             onClick={() => dropdownValue?.function()}
           >
             {dropdownValue?.invertedIcon && (
@@ -151,16 +151,16 @@ function Dropdown({
               </Span>
             )}
             {dropdownValue?.link && (
-              <A
+              <a
                 href={dropdownValue?.link}
                 target="_blank"
                 rel="nofollow"
                 color={getTextColor(dropdownValue)}
               >
                 {dropdownValue.title}
-              </A>
+              </a>
             )}
-          </DropdownItemContainer>
+          </Section>
         )
       )}
     </>
@@ -168,59 +168,59 @@ function Dropdown({
 }
 
 // css styles
-const SpanAddress = styled(Span)`
-  margin: 11px 22px 11px 2px;
-  font-weight: 400;
-  size: 14px;
-  text-transform: uppercase;
-  color: #fff;
-  spacing: 1px;
-  width: 100%;
-`;
+// const SpanAddress = styled(Span)`
+//   margin: 11px 22px 11px 2px;
+//   font-weight: 400;
+//   size: 14px;
+//   text-transform: uppercase;
+//   color: #fff;
+//   spacing: 1px;
+//   width: 100%;
+// `;
 
-const MobileAddress = styled(SpanAddress)`
-  @media (min-width: 993px) {
-    display: none;
-  }
-`;
+// const MobileAddress = styled(SpanAddress)`
+//   @media (min-width: 993px) {
+//     display: none;
+//   }
+// `;
 
-const DesktopAddress = styled(SpanAddress)`
-  @media (max-width: 992px) {
-    display: none;
-  }
-`;
+// const DesktopAddress = styled(SpanAddress)`
+//   @media (max-width: 992px) {
+//     display: none;
+//   }
+// `;
 
-const DropdownItemContainer = styled(Section) <{ hoverBGColor?: string }>`
-  justify-content: flex-start;
-  flex-wrap: nowrap;
-  white-space: nowrap;
-  margin: 1px 0;
-// width:100%;
-  padding: 2px 8px;
-  border-radius: 12px;
-  cursor: pointer;
-  text-align: left;
+// const DropdownItemContainer = styled(Section) <{ hoverBGColor?: string }>`
+//   justify-content: flex-start;
+//   flex-wrap: nowrap;
+//   white-space: nowrap;
+//   margin: 1px 0;
+// // width:100%;
+//   padding: 2px 8px;
+//   border-radius: 12px;
+//   cursor: pointer;
+//   text-align: left;
 
-  span {
-    text-wrap: nowrap;
-  }
-  &:hover {
-    background-color: ${(props) => props.hoverBGColor || 'none'};
-  }
-`;
+//   span {
+//     text-wrap: nowrap;
+//   }
+//   &:hover {
+//     background-color: ${(props) => props.hoverBGColor || 'none'};
+//   }
+// `;
 
-const A = styled.a`
-  margin: 8px 10px;
-  font-weight: 400;
-  font-size: 16px;
-  width: max-content;
+// const A = styled.a`
+//   margin: 8px 10px;
+//   font-weight: 400;
+//   font-size: 16px;
+//   width: max-content;
 
-  background: ${(props) => props.color};
-  z-index: 11;
-  &:hover {
-    background: transparent !important;
-  }
-`;
+//   background: ${(props) => props.color};
+//   z-index: 11;
+//   &:hover {
+//     background: transparent !important;
+//   }
+// `;
 
 
 export default Dropdown;

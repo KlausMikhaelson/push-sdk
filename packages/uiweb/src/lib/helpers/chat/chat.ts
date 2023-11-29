@@ -80,7 +80,7 @@ export const getChats = async (
 
     const lastThreadHash = chats[chats.length - 1]?.link;
     const lastListPresent = chats.length > 0 ? true : false;
-    return { chatsResponse: chats, lastThreadHash, lastListPresent };
+    return { chatsResponse: chats as any, lastThreadHash, lastListPresent };
   
 };
 

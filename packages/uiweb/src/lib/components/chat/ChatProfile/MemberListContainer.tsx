@@ -100,14 +100,14 @@ export const MemberListContainer = ({
     setDropdownHeight(containerHeight?.top);
   };
   return (
-    <WalletProfileContainer
+    <Section
       id={memberData?.wallets}
       background={
         memberList ? 'transparent' : theme.backgroundColor?.modalHoverBackground
       }
-      border={
-        memberList ? theme.border?.modalInnerComponents:'none' 
-      }
+      // border={
+      //   memberList ? theme.border?.modalInnerComponents:'none' 
+      // }
       borderRadius={theme.borderRadius?.modalInnerComponents}
     >
       <ProfileContainer
@@ -148,7 +148,7 @@ export const MemberListContainer = ({
       </Section>
 
       {selectedWallet?.toLowerCase() == memberData?.wallets?.toLowerCase() && (
-        <DropdownContainer
+        <Section
           style={{ top: dropdownHeight! > 500 ? '30%' : '45%' }}
           ref={dropdownRef}
           theme={theme}
@@ -161,49 +161,49 @@ export const MemberListContainer = ({
             }
             hoverBGColor={theme.backgroundColor?.modalHoverBackground}
           />
-        </DropdownContainer>
+        </Section>
       )}
-    </WalletProfileContainer>
+    </Section>
   );
 };
 
-const WalletProfileContainer = styled(Section)<WalletProfileContainerProps>`
-  justify-content: space-between;
-  padding: 8px 16px;
-    border: ${(props) => props.border};
-  position: relative;
-  box-sizing: border-box;
-  width: 100%;
-  max-height: 64px;
-  align-self: stretch;
-  display: flex;
-  height: auto;
-  z-index: auto;
-  flex: 1;
-  @media (max-width: 480px) {
-    max-width: 100%;
-  }
-`;
+// const WalletProfileContainer = styled(Section)<WalletProfileContainerProps>`
+//   justify-content: space-between;
+//   padding: 8px 16px;
+//     border: ${(props) => props.border};
+//   position: relative;
+//   box-sizing: border-box;
+//   width: 100%;
+//   max-height: 64px;
+//   align-self: stretch;
+//   display: flex;
+//   height: auto;
+//   z-index: auto;
+//   flex: 1;
+//   @media (max-width: 480px) {
+//     max-width: 100%;
+//   }
+// `;
 
-const DropdownContainer = styled.div`
-  position: absolute;
-  left: 48%;
-  top: 69%;
-  border-radius: ${(props) => props.theme.borderRadius.modalInnerComponents};
-  padding: 14px 8px;
-  z-index: 999999999999 !important;
-  display: flex;
-  flex-direction: column !important;
-  background: ${(props) => props.theme.backgroundColor.modalBackground};
-  border: ${(props) => props.theme.border.modalInnerComponents};
+// const DropdownContainer = styled.div`
+//   position: absolute;
+//   left: 48%;
+//   top: 69%;
+//   border-radius: ${(props) => props.theme.borderRadius.modalInnerComponents};
+//   padding: 14px 8px;
+//   z-index: 999999999999 !important;
+//   display: flex;
+//   flex-direction: column !important;
+//   background: ${(props) => props.theme.backgroundColor.modalBackground};
+//   border: ${(props) => props.theme.border.modalInnerComponents};
 
-  @media ${device.mobileL} {
-    left: 27%;
-  }
-  @media (min-width: 426px) and (max-width: 1150px) {
-    left: 48%;
-  }
-  @media (max-width: 480px) {
-    left: 25%;
-  }
-`;
+//   @media ${device.mobileL} {
+//     left: 27%;
+//   }
+//   @media (min-width: 426px) and (max-width: 1150px) {
+//     left: 48%;
+//   }
+//   @media (max-width: 480px) {
+//     left: 25%;
+//   }
+// `;
